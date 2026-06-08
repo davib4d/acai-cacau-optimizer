@@ -2,16 +2,16 @@
 
 ## 📄 Descrição do Projeto
 
-O **acai-cacau-optimizer** é um sistema computacional full-stack desenvolvido como parte do Projeto de Otimização da disciplina de Resolução de Problemas Multivariáveis (Cálculo II)[cite: 1]. [cite_start]O projeto adota a metodologia de Aprendizagem Baseada em Problemas (PBL) para integrar conceitos matemáticos avançados ao desenvolvimento de software[cite: 1].
+O **acai-cacau-optimizer** é um sistema computacional full-stack desenvolvido como parte do Projeto de Otimização da disciplina de Resolução de Problemas Multivariáveis (Cálculo II). O projeto adota a metodologia de Aprendizagem Baseada em Problemas (PBL) para integrar conceitos matemáticos avançados ao desenvolvimento de software.
 
-[cite_start]O objetivo principal é solucionar um problema real de planejamento agrícola na região do Pará: a alocação ideal de terras para o cultivo combinado de açaí e cacau. [cite_start]A modelagem utiliza uma função objetivo não-linear (quadrática) de duas variáveis para representar o lucro total da operação, considerando fatores críticos como a competição por recursos e retornos marginais decrescentes.
+O objetivo principal é solucionar um problema real de planejamento agrícola na região do Pará: a alocação ideal de terras para o cultivo combinado de açaí e cacau. A modelagem utiliza uma função objetivo não-linear (quadrática) de duas variáveis para representar o lucro total da operação, considerando fatores críticos como a competição por recursos e retornos marginais decrescentes.
 
 A partir da modelagem analítica, o sistema automatiza o cálculo de:
-* **Derivadas parciais e vetor gradiente ($\nabla f = 0$):** para a localização exata do ponto crítico de máximo lucro[cite: 1, 2].
-* **Matriz Hessiana:** para a classificação formal do ponto crítico como um ponto de máximo global dentro do domínio de restrição da propriedade[cite: 1, 2].
+* **Derivadas parciais e vetor gradiente (∇f = 0):** para a localização exata do ponto crítico de máximo lucro.
+* **Matriz Hessiana:** para a classificação formal do ponto crítico como um ponto de máximo global dentro do domínio de restrição da propriedade.
 
 ### 👤 Contexto e Persona
-A aplicação foi projetada para apoiar a tomada de decisão de produtores rurais locais (representados pela persona *Antônio Sousa*, do município de Cametá-PA). O sistema elimina a necessidade de conhecimento matemático avançado por parte do usuário final, transformando parâmetros de mercado (como variação de preços e custos sazonais) em recomendações visuais e acionáveis de alocação de hectares[cite: 1, 2].
+A aplicação foi projetada para apoiar a tomada de decisão de produtores rurais locais (representados pela persona *Antônio Sousa*, do município de Cametá-PA). O sistema elimina a necessidade de conhecimento matemático avançado por parte do usuário final, transformando parâmetros de mercado (como variação de preços e custos sazonais) em recomendações visuais e acionáveis de alocação de hectares.
 
 ### 💻 Tecnologias Utilizadas
 * **Back-end:** Python (FastAPI), SymPy (para resolução algébrica e cálculo simbólico) e NumPy.
