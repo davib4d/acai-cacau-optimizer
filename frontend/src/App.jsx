@@ -16,7 +16,6 @@ function App() {
   const [erro, setErro] = useState(null)
   const [loading, setLoading] = useState(false)
   
-  // Referência para conectar o Plotly diretamente a uma DIV nativa do React
   const plotRef = useRef(null)
 
   const handleChange = (e) => {
@@ -77,7 +76,7 @@ function App() {
     return { x: xValues, y: yValues, z: zValues };
   }, [resultado, formData]);
 
-  // EFEITO COLATERAL: Renderiza o gráfico nativamente assim que a matriz estiver pronta
+  // RENDERIZAÇÃO DO PLOTLY
   useEffect(() => {
     if (surfaceData && plotRef.current) {
       const data = [{
@@ -197,11 +196,51 @@ function App() {
                 background: `linear-gradient(135deg, ${profitBg}, rgba(0, 0, 0, 0))`,
                 borderColor: profitBorder,
                 borderLeftColor: profitColor,
-                marginBottom: '20px'
+                marginBottom: '25px'
               }}>
                 <p style={{ color: profitColor }}>{profitLabel}</p>
                 <h2 style={{ color: isLoss ? '#ff4757' : 'white' }}>R$ {resultado.lucro_maximo}</h2>
               </div>
+
+              {/* NOVA SECÇÃO: ANÁLISE DE SENSIBILIDADE */}
+              {resultado.sensibilidade && resultado.sensibilidade.length > 0 && (
+                <div style={{ marginBottom: '25px' }}>
+                  <h4 style={{ color: 'var(--text-main)', fontSize: '1rem', marginBottom: '15px', fontWeight: '600' }}>
+                    📈 Impacto de Flutuações de Preço (±10%)
+                  </h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                    {resultado.sensibilidade.map((item, index) => (
+                      <div key={index} style={{
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '12px',
+                        padding: '15px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px'
+                      }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontWeight: '600', color: 'var(--text-muted)' }}>{item.cenario}</span>
+                          <span style={{
+                            fontSize: '0.8rem',
+                            fontWeight: '700',
+                            padding: '4px 8px',
+                            borderRadius: '6px',
+                            backgroundColor: item.diferenca_lucro > 0 ? 'rgba(32, 191, 107, 0.15)' : 'rgba(255, 71, 87, 0.15)',
+                            color: item.diferenca_lucro > 0 ? 'var(--cacau-green)' : '#ff4757'
+                          }}>
+                            {item.diferenca_lucro > 0 ? '+' : ''}R$ {item.diferenca_lucro}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-main)' }}>
+                          Ajustar plantio para:<br/>
+                          <strong>{item.novo_x} ha</strong> Açaí | <strong>{item.novo_y} ha</strong> Cacau
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               
               <details style={{ marginBottom: '20px' }}>
                 <summary>
@@ -225,7 +264,6 @@ function App() {
                 <div style={{ padding: '15px', backgroundColor: 'rgba(0,0,0,0.3)', borderBottom: '1px solid var(--glass-border)', textAlign: 'center' }}>
                   <h4 style={{ color: 'var(--text-main)', fontSize: '1rem', fontWeight: '600' }}>Superfície de Lucro Tridimensional</h4>
                 </div>
-                {/* A div conectada ao useRef que receberá o gráfico */}
                 <div ref={plotRef} style={{ width: '100%', height: '400px' }} />
               </div>
 
